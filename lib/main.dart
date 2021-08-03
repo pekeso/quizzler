@@ -1,4 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:quizzler/quiz_brain.dart';
+
+QuizBrain quizBrain = QuizBrain();
 
 void main() => runApp(Quizzler());
 
@@ -25,6 +29,10 @@ class QuizPage extends StatefulWidget {
 }
 
 class _QuizPageState extends State<QuizPage> {
+  List<Icon> scoreKeeper = [];
+
+  int questionNumber = 0;
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -37,7 +45,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                'This is where the question text will go.',
+                quizBrain.questionBank[questionNumber].questionText,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
@@ -50,18 +58,32 @@ class _QuizPageState extends State<QuizPage> {
         Expanded(
           child: Padding(
             padding: EdgeInsets.all(15.0),
-            child: FlatButton(
-              textColor: Colors.white,
-              color: Colors.green,
-              child: Text(
-                'True',
-                style: TextStyle(
+            child: TextButton(
+              style: TextButton.styleFrom(
+                primary: Colors.white,
+                backgroundColor: Colors.green,
+                textStyle: TextStyle(
                   color: Colors.white,
                   fontSize: 20.0,
                 ),
               ),
+              child: Text(
+                'True',
+              ),
               onPressed: () {
                 //The user picked true.
+                bool correctAnswer =
+                    quizBrain.questionBank[questionNumber].questionAnswer;
+                if (correctAnswer == true) {
+                  print('bonne réponse');
+                } else {
+                  print('mauvaise réponse');
+                }
+                setState(() {
+                  questionNumber++;
+                });
+
+                print(questionNumber);
               },
             ),
           ),
@@ -69,22 +91,40 @@ class _QuizPageState extends State<QuizPage> {
         Expanded(
           child: Padding(
             padding: EdgeInsets.all(15.0),
-            child: FlatButton(
-              color: Colors.red,
+            child: TextButton(
+              style: TextButton.styleFrom(
+                primary: Colors.white,
+                backgroundColor: Colors.red,
+                textStyle: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20.0,
+                ),
+              ),
               child: Text(
                 'False',
-                style: TextStyle(
-                  fontSize: 20.0,
-                  color: Colors.white,
-                ),
               ),
               onPressed: () {
                 //The user picked false.
+                bool correctAnswer =
+                    quizBrain.questionBank[questionNumber].questionAnswer;
+
+                if (correctAnswer == false) {
+                  print('bonne réponse');
+                } else {
+                  print('mauvaise réponse');
+                }
+                setState(() {
+                  questionNumber++;
+                });
+
+                print(questionNumber);
               },
             ),
           ),
         ),
-        //TODO: Add a Row here as your score keeper
+        Row(
+          children: scoreKeeper,
+        ),
       ],
     );
   }
