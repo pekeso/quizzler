@@ -31,8 +31,6 @@ class QuizPage extends StatefulWidget {
 class _QuizPageState extends State<QuizPage> {
   List<Icon> scoreKeeper = [];
 
-  int questionNumber = 0;
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -45,7 +43,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                quizBrain.questionBank[questionNumber].questionText,
+                quizBrain.getQuestionText(),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
@@ -72,18 +70,15 @@ class _QuizPageState extends State<QuizPage> {
               ),
               onPressed: () {
                 //The user picked true.
-                bool correctAnswer =
-                    quizBrain.questionBank[questionNumber].questionAnswer;
+                bool correctAnswer = quizBrain.getCorrectAnswer();
                 if (correctAnswer == true) {
                   print('bonne réponse');
                 } else {
                   print('mauvaise réponse');
                 }
                 setState(() {
-                  questionNumber++;
+                  quizBrain.nextQuestion();
                 });
-
-                print(questionNumber);
               },
             ),
           ),
@@ -105,8 +100,7 @@ class _QuizPageState extends State<QuizPage> {
               ),
               onPressed: () {
                 //The user picked false.
-                bool correctAnswer =
-                    quizBrain.questionBank[questionNumber].questionAnswer;
+                bool correctAnswer = quizBrain.getCorrectAnswer();
 
                 if (correctAnswer == false) {
                   print('bonne réponse');
@@ -114,10 +108,8 @@ class _QuizPageState extends State<QuizPage> {
                   print('mauvaise réponse');
                 }
                 setState(() {
-                  questionNumber++;
+                  quizBrain.nextQuestion();
                 });
-
-                print(questionNumber);
               },
             ),
           ),
