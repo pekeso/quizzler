@@ -44,4 +44,9 @@ class QuizBrain {
   bool getCorrectAnswer() {
     return _questionBank[_questionNumber].questionAnswer;
   }
+
+  //TODO: Etape 3 Partie A  - Créer une méthode appelée isFinished() ici, qui vérifie pour voir si nous avons atteint la dernière question. La méthode devrait retourner true si nous sommes à la dernière question et false si nous ne nous y sommes pas encore.
+
+  //TODO: Etape 3 Partie B - Utiliser print pour vérifier que isFinished retourne true quand vous êtes effectivement à la fin quiz
+  //TODO: Etape 4 Partie B - Créer une méthode reset() ici qui réinitialise questionNumber à 0.
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+//TODO: Etape 2 - Importer le package rFlutter_Alert ici
 import 'package:quizzler/quiz_brain.dart';
 
 QuizBrain quizBrain = QuizBrain();
@@ -34,6 +35,13 @@ class _QuizPageState extends State<QuizPage> {
   void checkAnswer(bool userPickedAnswer) {
     bool correctAnswer = quizBrain.getCorrectAnswer();
     setState(() {
+      //TODO: Etape 4 - Utilise IF/ELSE pour vérifier que nous avons atteint la fin du quiz. Si vrai, executer les parties A, B, C, D.
+      //TODO: Etape 4 Partie A - afficher une alerte en utilisant rFlutter_alert (souvenez-vous de lire la documentation sur le package!)
+      //HINT! Etape 4 Partie B se trouve dans quiz_brain.dart
+      //TODO: Etape 4 Partie C - reinitialiser questionNumber
+      //TODO: Etape 4 Partie D - Vider la liste scoreKeeper
+
+      //TODO: Etape 5 - si on n'a pas atteint la fin du quiz, ELSE exécuter les étapes de vérification suivantes 👇
       if (correctAnswer == userPickedAnswer) {
         scoreKeeper.add(Icon(
           Icons.check,
